@@ -1,123 +1,53 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
-import { vocabularyApi } from '@/api/vocabulary'
-import type { Word, WordCreate, WordUpdate, WordBatchCreate } from '@/types/vocabulary'
-import { ElMessage } from 'element-plus'
+import { ref } from 'vue'
+import vocabularyData from '@/data/vocabulary.json'
+
+export interface Word {
+  id: number
+  word: string
+  phonetic?: string
+  meaning: string
+  part_of_speech?: string
+  example_sentence?: string
+  difficulty_level: number
+  tags?: string[]
+}
 
 export const useVocabularyStore = defineStore('vocabulary', () => {
-  const words = ref<Word[]>([])
-  const total = ref(0)
+  const words = ref<Word[]>(vocabularyData as Word[])
   const loading = ref(false)
-  const currentWord = ref<Word | null>(null)
 
-  // Fetch words
-  async function fetchWords(skip = 0, limit = 20, tag?: string) {
-    loading.value = true
-    try {
-      const result = await vocabularyApi.getWords(skip, limit, tag)
-      words.value = result.items
-      total.value = result.total
-    } catch (error) {
-      ElMessage.error('获取单词列表失败')
-    } finally {
-      loading.value = false
-    }
+  // 过滤
+  function filterByTag(tag: string) {
+    return words.value.filter(w => w.tags?.includes(tag))
   }
 
-  // Create word
-  async function createWord(data: WordCreate) {
-    loading.value = true
-    try {
-      const word = await vocabularyApi.createWord(data)
-      words.value.unshift(word)
-      total.value++
-      ElMessage.success('添加成功')
-      return word
-    } catch (error) {
-      ElMessage.error('添加失败')
-      return null
-    } finally {
-      loading.value = false
-    }
+  function filterByDifficulty(level: number) {
+    return words.value.filter(w => w.difficulty_level === level)
   }
 
-  // Update word
-  async function updateWord(id: number, data: WordUpdate) {
-    loading.value = true
-    try {
-      const word = await vocabularyApi.updateWord(id, data)
-      const index = words.value.findIndex(w => w.id === id)
-      if (index > -1) {
-        words.value[index] = word
-      }
-      ElMessage.success('更新成功')
-      return word
-    } catch (error) {
-      ElMessage.error('更新失败')
-      return null
-    } finally {
-      loading.value = false
-    }
+  // 搜索
+  function search(keyword: string) {
+    const lower = keyword.toLowerCase()
+    return words.value.filter(w =>
+      w.word.toLowerCase().includes(lower) ||
+      w.meaning.toLowerCase().includes(lower)
+    )
   }
 
-  // Delete word
-  async function deleteWord(id: number) {
-    loading.value = true
-    try {
-      await vocabularyApi.deleteWord(id)
-      words.value = words.value.filter(w => w.id !== id)
-      total.value--
-      ElMessage.success('删除成功')
-      return true
-    } catch (error) {
-      ElMessage.error('删除失败')
-      return false
-    } finally {
-      loading.value = false
-    }
-  }
+  // 获取总数
+  const total = words.value.length
 
-  // Batch create
-  async function batchCreateWords(data: WordBatchCreate) {
-    loading.value = true
-    try {
-      const newWords = await vocabularyApi.batchCreateWords(data)
-      words.value = [...newWords, ...words.value]
-      total.value += newWords.length
-      ElMessage.success(`成功添加 ${newWords.length} 个单词`)
-      return newWords
-    } catch (error) {
-      ElMessage.error('批量添加失败')
-      return []
-    } finally {
-      loading.value = false
-    }
-  }
-
-  // Get single word
-  async function getWord(id: number) {
-    loading.value = true
-    try {
-      currentWord.value = await vocabularyApi.getWord(id)
-      return currentWord.value
-    } catch (error) {
-      ElMessage.error('获取单词失败')
-      return null
-    } finally {
-      loading.value = false
-    }
-  }
+  // 获取所有标签
+  const allTags = Array.from(new Set(words.value.flatMap(w => w.tags || [])))
 
   return {
     words,
     total,
     loading,
-    currentWord,
-    fetchWords,
-    createWord,
-    updateWord,
-    deleteWord,
-    batchCreateWords,
-    getWord
+    filterByTag,
+    filterByDifficulty,
+    search,
+    allTags
   }
 })

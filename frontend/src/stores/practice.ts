@@ -1,31 +1,48 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { practiceApi } from '@/api/practice'
-import type { Word, PracticeSubmit, PracticeResult } from '@/types'
-import { ElMessage } from 'element-plus'
+import { ref, computed } from 'vue'
+import { useVocabularyStore, type Word } from './vocabulary'
+import sentencesData from '@/data/sentences.json'
+
+export interface Sentence {
+  id: number
+  sentence: string
+  translation: string
+  difficulty_level: number
+  tags?: string[]
+}
+
+export interface PracticeResult {
+  is_correct: boolean
+  correct_answer: string
+  score: number
+  feedback?: string
+}
 
 export const usePracticeStore = defineStore('practice', () => {
+  const vocabularyStore = useVocabularyStore()
+
   const practiceWords = ref<Word[]>([])
+  const practiceSentences = ref<Sentence[]>(sentencesData as Sentence[])
   const currentIndex = ref(0)
   const correctCount = ref(0)
   const loading = ref(false)
   const practiceType = ref<'listening' | 'reading' | 'writing'>('listening')
+  const lastResult = ref<PracticeResult | null>(null)
 
-  // Fetch practice words
-  async function fetchPracticeWords(count = 10, difficulty?: number) {
-    loading.value = true
-    try {
-      practiceWords.value = await practiceApi.getPracticeWords(count, difficulty)
-      currentIndex.value = 0
-      correctCount.value = 0
-    } catch (error) {
-      ElMessage.error('获取练习内容失败')
-    } finally {
-      loading.value = false
+  // 获取练习单词
+  function fetchPracticeWords(count = 10, difficulty?: number) {
+    let words = vocabularyStore.words
+    if (difficulty) {
+      words = words.filter(w => w.difficulty_level === difficulty)
     }
+    // 随机选取
+    practiceWords.value = shuffleArray(words).slice(0, count)
+    currentIndex.value = 0
+    correctCount.value = 0
+    lastResult.value = null
   }
 
-  // Get current word
+  // 获取当前单词
   function getCurrentWord(): Word | null {
     if (currentIndex.value < practiceWords.value.length) {
       return practiceWords.value[currentIndex.value]
@@ -33,62 +50,73 @@ export const usePracticeStore = defineStore('practice', () => {
     return null
   }
 
-  // Submit answer
-  async function submitAnswer(userAnswer: string, timeSpent?: number): Promise<PracticeResult | null> {
+  // 提交答案
+  function submitAnswer(userAnswer: string): PracticeResult | null {
     const word = getCurrentWord()
     if (!word) return null
 
-    loading.value = true
-    try {
-      const data: PracticeSubmit = {
-        item_type: 'word',
-        item_id: word.id,
-        user_answer: userAnswer,
-        time_spent: timeSpent
-      }
+    let correctAnswer = ''
+    let isCorrect = false
 
-      let result: PracticeResult
-      if (practiceType.value === 'listening') {
-        result = await practiceApi.submitListening(data)
-      } else if (practiceType.value === 'reading') {
-        result = await practiceApi.submitReading(data)
-      } else {
-        result = await practiceApi.submitWriting(data)
-      }
-
-      if (result.is_correct) {
-        correctCount.value++
-      }
-
-      return result
-    } catch (error) {
-      ElMessage.error('提交答案失败')
-      return null
-    } finally {
-      loading.value = false
+    if (practiceType.value === 'listening') {
+      correctAnswer = word.word
+      isCorrect = userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()
+    } else if (practiceType.value === 'reading') {
+      correctAnswer = word.meaning
+      isCorrect = userAnswer.trim() === correctAnswer.trim()
+    } else {
+      correctAnswer = word.word
+      isCorrect = userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()
     }
+
+    const score = isCorrect ? 100 : 0
+
+    if (isCorrect) {
+      correctCount.value++
+    }
+
+    lastResult.value = {
+      is_correct: isCorrect,
+      correct_answer: correctAnswer,
+      score,
+      feedback: isCorrect ? '正确!' : `正确答案: ${correctAnswer}`
+    }
+
+    return lastResult.value
   }
 
-  // Next word
+  // 下一个单词
   function nextWord() {
     currentIndex.value++
+    lastResult.value = null
   }
 
-  // Reset practice
+  // 重置
   function reset() {
     currentIndex.value = 0
     correctCount.value = 0
+    lastResult.value = null
   }
 
-  // Check if practice complete
+  // 是否完成
   function isComplete(): boolean {
     return currentIndex.value >= practiceWords.value.length
   }
 
-  // Get accuracy rate
+  // 正确率
   function getAccuracyRate(): number {
     if (currentIndex.value === 0) return 0
     return Math.round((correctCount.value / currentIndex.value) * 100)
+  }
+
+  // 随机数组
+  function shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
   }
 
   return {
@@ -97,6 +125,7 @@ export const usePracticeStore = defineStore('practice', () => {
     correctCount,
     loading,
     practiceType,
+    lastResult,
     fetchPracticeWords,
     getCurrentWord,
     submitAnswer,

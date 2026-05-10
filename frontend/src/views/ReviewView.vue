@@ -4,20 +4,24 @@
       <div class="page-header">
         <h2>复习中心</h2>
         <div class="stats-overview">
-          <el-statistic title="今日待复习" :value="reviewStore.dueToday" />
-          <el-statistic title="已掌握" :value="reviewStore.masteredCount" />
-          <el-statistic title="学习中" :value="reviewStore.stats?.learning_count || 0" />
+          <el-statistic title="今日待复习" :value="reviewStore.todayItems.length" />
+          <el-statistic title="已掌握" :value="reviewStore.stats.masteredCount" />
+          <el-statistic title="学习中" :value="reviewStore.stats.learningCount" />
         </div>
       </div>
 
       <!-- Review List -->
       <div class="card-container">
-        <el-table :data="reviewStore.todayItems" v-loading="reviewStore.loading" stripe>
+        <el-table :data="reviewStore.todayItems" stripe v-if="reviewStore.todayItems.length > 0">
           <el-table-column prop="word" label="单词" width="150">
             <template #default="{ row }">
-              {{ row.word || row.sentence }}
+              <span class="word-text">{{ row.word }}</span>
+              <el-button size="small" circle @click="playAudio(row.word)" style="margin-left: 8px">
+                <el-icon><Headset /></el-icon>
+              </el-button>
             </template>
           </el-table-column>
+          <el-table-column prop="phonetic" label="音标" width="120" />
           <el-table-column prop="meaning" label="含义" />
           <el-table-column prop="status" label="状态" width="100">
             <template #default="{ row }">
@@ -26,8 +30,8 @@
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column prop="review_count" label="复习次数" width="100" />
-          <el-table-column label="评分" width="300">
+          <el-table-column prop="reviewCount" label="复习次数" width="100" />
+          <el-table-column label="评分 (0-5分)" width="350">
             <template #default="{ row }">
               <el-rate
                 v-model="row.tempScore"
@@ -48,34 +52,40 @@
           </el-table-column>
         </el-table>
 
-        <el-empty v-if="reviewStore.todayItems.length === 0" description="今日暂无复习内容" />
+        <el-empty v-else description="今日暂无复习内容，去添加更多单词吧！">
+          <el-button type="primary" @click="$router.push('/vocabulary')">查看词库</el-button>
+        </el-empty>
       </div>
 
-      <!-- Stats Chart Placeholder -->
+      <!-- Stats Chart -->
       <div class="card-container stats-chart">
         <h3>学习统计</h3>
         <el-row :gutter="20">
           <el-col :span="6">
             <el-card shadow="hover">
-              <el-statistic title="总词汇量" :value="reviewStore.stats?.total_words || 0" />
+              <el-statistic title="总词汇量" :value="reviewStore.stats.totalWords" />
             </el-card>
           </el-col>
           <el-col :span="6">
             <el-card shadow="hover">
-              <el-statistic title="已掌握" :value="reviewStore.stats?.mastered_count || 0" />
+              <el-statistic title="已掌握" :value="reviewStore.stats.masteredCount" />
             </el-card>
           </el-col>
           <el-col :span="6">
             <el-card shadow="hover">
-              <el-statistic title="明日复习" :value="reviewStore.stats?.tomorrow_reviews || 0" />
+              <el-statistic title="学习中" :value="reviewStore.stats.learningCount" />
             </el-card>
           </el-col>
           <el-col :span="6">
             <el-card shadow="hover">
-              <el-statistic title="学习中" :value="reviewStore.stats?.learning_count || 0" />
+              <el-statistic title="复习中" :value="reviewStore.stats.reviewCount" />
             </el-card>
           </el-col>
         </el-row>
+
+        <el-button type="warning" @click="clearRecords" style="margin-top: 20px;">
+          重置复习记录
+        </el-button>
       </div>
     </div>
   </Layout>
@@ -89,16 +99,27 @@ import Layout from '@/components/Layout.vue'
 
 const reviewStore = useReviewStore()
 
-const submitReview = async (item: any) => {
+const playAudio = (word: string) => {
+  const utterance = new SpeechSynthesisUtterance(word)
+  utterance.lang = 'en-US'
+  speechSynthesis.speak(utterance)
+}
+
+const submitReview = (item: any) => {
   if (item.tempScore === undefined) return
 
-  await reviewStore.submitReview(item.item_type, item.item_id, item.tempScore)
-  ElMessage.success('复习已提交')
+  reviewStore.submitReview(item.id, item.tempScore)
+  ElMessage.success('复习已提交，下次复习时间已更新')
+  item.tempScore = undefined
+}
+
+const clearRecords = () => {
+  reviewStore.clearRecords()
+  ElMessage.success('复习记录已重置')
 }
 
 onMounted(() => {
-  reviewStore.fetchTodayReview()
-  reviewStore.fetchStats()
+  reviewStore.init()
 })
 </script>
 
@@ -130,5 +151,10 @@ onMounted(() => {
 
 .el-card {
   text-align: center;
+}
+
+.word-text {
+  font-weight: bold;
+  font-size: 16px;
 }
 </style>

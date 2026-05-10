@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "sentence": "I have been studying English for three years.",
+    "translation": "我已经学习英语三年了。",
+    "difficulty_level": 1,
+    "tags": ["基础"]
+  },
+  {
+    "id": 2,
+    "sentence": "The more you practice, the better you will become.",
+    "translation": "练习越多，你就会变得越好。",
+    "difficulty_level": 2,
+    "tags": ["励志"]
+  },
+  {
+    "id": 3,
+    "sentence": "It is important to review what you have learned regularly.",
+    "translation": "定期复习所学内容很重要。",
+    "difficulty_level": 2,
+    "tags": ["学习"]
+  },
+  {
+    "id": 4,
+    "sentence": "Success comes from consistent effort and dedication.",
+    "translation": "成功来自持续的努力和奉献。",
+    "difficulty_level": 2,
+    "tags": ["励志"]
+  },
+  {
+    "id": 5,
+    "sentence": "Learning a new language opens up many opportunities.",
+    "translation": "学习一门新语言会带来很多机会。",
+    "difficulty_level": 2,
+    "tags": ["学习"]
+  }
+]

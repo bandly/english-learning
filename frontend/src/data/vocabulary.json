@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "word": "abandon",
+    "phonetic": "/əˈbændən/",
+    "meaning": "v. 放弃，抛弃",
+    "part_of_speech": "verb",
+    "example_sentence": "He abandoned his family.",
+    "difficulty_level": 2,
+    "tags": ["高频", "托福"]
+  },
+  {
+    "id": 2,
+    "word": "beautiful",
+    "phonetic": "/ˈbjuːtɪfl/",
+    "meaning": "adj. 美丽的，漂亮的",
+    "part_of_speech": "adj",
+    "example_sentence": "She has a beautiful smile.",
+    "difficulty_level": 1,
+    "tags": ["基础"]
+  },
+  {
+    "id": 3,
+    "word": "computer",
+    "phonetic": "/kəmˈpjuːtər/",
+    "meaning": "n. 计算机，电脑",
+    "part_of_speech": "noun",
+    "example_sentence": "I bought a new computer.",
+    "difficulty_level": 1,
+    "tags": ["基础"]
+  },
+  {
+    "id": 4,
+    "word": "determine",
+    "phonetic": "/dɪˈtɜːrmɪn/",
+    "meaning": "v. 决定，确定",
+    "part_of_speech": "verb",
+    "example_sentence": "We need to determine the cause.",
+    "difficulty_level": 2,
+    "tags": ["高频"]
+  },
+  {
+    "id": 5,
+    "word": "environment",
+    "phonetic": "/ɪnˈvaɪərnəmənt/",
+    "meaning": "n. 环境",
+    "part_of_speech": "noun",
+    "example_sentence": "We should protect the environment.",
+    "difficulty_level": 2,
+    "tags": ["高频"]
+  },
+  {
+    "id": 6,
+    "word": "opportunity",
+    "phonetic": "/ˌɒpərˈtuːnɪti/",
+    "meaning": "n. 机会，机遇",
+    "part_of_speech": "noun",
+    "example_sentence": "This is a great opportunity.",
+    "difficulty_level": 2,
+    "tags": ["高频", "雅思"]
+  },
+  {
+    "id": 7,
+    "word": "significant",
+    "phonetic": "/sɪɡˈnɪfɪkənt/",
+    "meaning": "adj. 重要的，显著的",
+    "part_of_speech": "adj",
+    "example_sentence": "This is a significant discovery.",
+    "difficulty_level": 3,
+    "tags": ["高频", "雅思"]
+  },
+  {
+    "id": 8,
+    "word": "achieve",
+    "phonetic": "/əˈtʃiːv/",
+    "meaning": "v. 实现，达到",
+    "part_of_speech": "verb",
+    "example_sentence": "He achieved his goal.",
+    "difficulty_level": 2,
+    "tags": ["高频"]
+  },
+  {
+    "id": 9,
+    "word": "consequence",
+    "phonetic": "/ˈkɒnsɪkwəns/",
+    "meaning": "n. 结果，后果",
+    "part_of_speech": "noun",
+    "example_sentence": "You must accept the consequences.",
+    "difficulty_level": 3,
+    "tags": ["高频", "雅思"]
+  },
+  {
+    "id": 10,
+    "word": "perspective",
+    "phonetic": "/pərˈspektɪv/",
+    "meaning": "n. 视角，观点",
+    "part_of_speech": "noun",
+    "example_sentence": "From my perspective, this is wrong.",
+    "difficulty_level": 3,
+    "tags": ["雅思"]
+  }
+]

@@ -7,7 +7,7 @@
         <el-menu mode="horizontal" :default-active="activeIndex" router>
           <el-menu-item index="/vocabulary">
             <el-icon><Notebook /></el-icon>
-            词汇管理
+            词库管理
           </el-menu-item>
           <el-menu-item index="/practice">
             <el-icon><EditPen /></el-icon>
@@ -18,10 +18,6 @@
             复习中心
           </el-menu-item>
         </el-menu>
-        <div class="user-info">
-          <span>{{ userStore.user?.username }}</span>
-          <el-button type="text" @click="handleLogout">退出</el-button>
-        </div>
       </el-header>
 
       <!-- Main Content -->
@@ -34,19 +30,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const router = useRouter()
-const userStore = useUserStore()
-
 const activeIndex = computed(() => route.path)
-
-const handleLogout = () => {
-  userStore.logout()
-  router.push('/login')
-}
 </script>
 
 <style scoped>
@@ -72,12 +59,6 @@ const handleLogout = () => {
 .el-menu {
   border-bottom: none;
   flex: 1;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .main-content {
