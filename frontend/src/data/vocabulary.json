@@ -98,5 +98,35 @@
     "example_sentence": "From my perspective, this is wrong.",
     "difficulty_level": 3,
     "tags": ["雅思"]
+  },
+  {
+    "id": 11,
+    "word": "MTTR",
+    "phonetic": "",
+    "meaning": "平均修复时间（Mean Time To Repair）",
+    "part_of_speech": "abbr",
+    "example_sentence": "Our MTTR is under 30 minutes.",
+    "difficulty_level": 3,
+    "tags": ["技术", "运维"]
+  },
+  {
+    "id": 12,
+    "word": "MTBF",
+    "phonetic": "",
+    "meaning": "平均故障间隔时间（Mean Time Between Failures）",
+    "part_of_speech": "abbr",
+    "example_sentence": "The MTBF of this server is 1000 hours.",
+    "difficulty_level": 3,
+    "tags": ["技术", "运维"]
+  },
+  {
+    "id": 13,
+    "word": "MTTF",
+    "phonetic": "",
+    "meaning": "平均故障时间（Mean Time To Failure）",
+    "part_of_speech": "abbr",
+    "example_sentence": "MTTF helps predict system reliability.",
+    "difficulty_level": 3,
+    "tags": ["技术", "运维"]
   }
 ]
