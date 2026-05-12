@@ -251,7 +251,7 @@
     "example_sentence": "Data consistency is important in distributed systems.",
     "difficulty_level": 3,
     "tags": ["缩写拆解", "分布式"],
-    "related_abbreviations": ["CAP"]
+    "related_abbreviations": ["CAP", "ACID"]
   },
   {
     "id": 25,
@@ -285,5 +285,49 @@
     "difficulty_level": 3,
     "tags": ["缩写拆解", "分布式"],
     "related_abbreviations": ["CAP"]
+  },
+  {
+    "id": 28,
+    "word": "ACID",
+    "phonetic": "",
+    "meaning": "数据库事务四特性（Atomicity, Consistency, Isolation, Durability）",
+    "part_of_speech": "abbr",
+    "example_sentence": "ACID properties ensure reliable database transactions.",
+    "difficulty_level": 3,
+    "tags": ["技术", "数据库"],
+    "abbreviation_of": ["atomicity", "consistency", "isolation", "durability"]
+  },
+  {
+    "id": 29,
+    "word": "atomicity",
+    "phonetic": "/ˌætəˈmɪsɪti/",
+    "meaning": "n. 原子性",
+    "part_of_speech": "noun",
+    "example_sentence": "Atomicity ensures all operations in a transaction succeed or fail together.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "数据库"],
+    "related_abbreviations": ["ACID"]
+  },
+  {
+    "id": 30,
+    "word": "isolation",
+    "phonetic": "/ˌaɪsəˈleɪʃən/",
+    "meaning": "n. 隔离性",
+    "part_of_speech": "noun",
+    "example_sentence": "Isolation keeps transactions separate from each other.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "数据库"],
+    "related_abbreviations": ["ACID"]
+  },
+  {
+    "id": 31,
+    "word": "durability",
+    "phonetic": "/ˌdjʊərəˈbɪlɪti/",
+    "meaning": "n. 持久性",
+    "part_of_speech": "noun",
+    "example_sentence": "Durability ensures committed transactions are permanently saved.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "数据库"],
+    "related_abbreviations": ["ACID"]
   }
 ]
