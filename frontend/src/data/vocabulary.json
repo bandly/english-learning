@@ -230,5 +230,60 @@
     "difficulty_level": 3,
     "tags": ["缩写拆解", "技术"],
     "related_abbreviations": ["CoAP", "HTTP", "TCP"]
+  },
+  {
+    "id": 23,
+    "word": "CAP",
+    "phonetic": "",
+    "meaning": "CAP定理（Consistency, Availability, Partition tolerance）- 分布式系统三要素",
+    "part_of_speech": "abbr",
+    "example_sentence": "According to CAP theorem, you can only choose two of three.",
+    "difficulty_level": 3,
+    "tags": ["技术", "分布式", "架构"],
+    "abbreviation_of": ["consistency", "availability", "partition", "tolerance"]
+  },
+  {
+    "id": 24,
+    "word": "consistency",
+    "phonetic": "/kənˈsɪstənsi/",
+    "meaning": "n. 一致性",
+    "part_of_speech": "noun",
+    "example_sentence": "Data consistency is important in distributed systems.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "分布式"],
+    "related_abbreviations": ["CAP"]
+  },
+  {
+    "id": 25,
+    "word": "availability",
+    "phonetic": "/əˌveɪləˈbɪlɪti/",
+    "meaning": "n. 可用性",
+    "part_of_speech": "noun",
+    "example_sentence": "High availability is a key requirement for cloud services.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "运维"],
+    "related_abbreviations": ["CAP"]
+  },
+  {
+    "id": 26,
+    "word": "partition",
+    "phonetic": "/pɑːrˈtɪʃən/",
+    "meaning": "n. 分区，分割；v. 分割",
+    "part_of_speech": "noun/verb",
+    "example_sentence": "Network partition can cause system issues.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "分布式"],
+    "related_abbreviations": ["CAP"]
+  },
+  {
+    "id": 27,
+    "word": "tolerance",
+    "phonetic": "/ˈtɒlərəns/",
+    "meaning": "n. 容忍，容错",
+    "part_of_speech": "noun",
+    "example_sentence": "Partition tolerance allows system to continue despite failures.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "分布式"],
+    "related_abbreviations": ["CAP"]
   }
 ]
