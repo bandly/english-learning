@@ -18,7 +18,7 @@
           </el-form-item>
           <el-form-item label="难度等级">
             <el-select v-model="practiceDifficulty" placeholder="全部难度" clearable>
-              <el-option v-for="n in 5" :key="n" :label="难度 ${n}" :value="n" />
+              <el-option v-for="n in 5" :key="n" :label="'难度 ' + n" :value="n" />
             </el-select>
           </el-form-item>
           <el-button type="primary" size="large" @click="startPractice">开始练习</el-button>

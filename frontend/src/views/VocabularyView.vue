@@ -34,7 +34,7 @@
           </el-col>
           <el-col :span="4">
             <el-select v-model="selectedDifficulty" placeholder="难度筛选" clearable>
-              <el-option v-for="n in 5" :key="n" :label="难度 ${n}" :value="n" />
+              <el-option v-for="n in 5" :key="n" :label="'难度 ' + n" :value="n" />
             </el-select>
           </el-col>
         </el-row>
