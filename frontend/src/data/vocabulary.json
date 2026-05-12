@@ -329,5 +329,26 @@
     "difficulty_level": 3,
     "tags": ["缩写拆解", "数据库"],
     "related_abbreviations": ["ACID"]
+  },
+  {
+    "id": 32,
+    "word": "Saga",
+    "phonetic": "/ˈsɑːɡə/",
+    "meaning": "n. Saga模式 - 分布式事务管理模式，通过一系列本地事务实现最终一致性",
+    "part_of_speech": "noun",
+    "example_sentence": "Saga pattern is used for distributed transactions in microservices.",
+    "difficulty_level": 3,
+    "tags": ["技术", "分布式", "数据库"]
+  },
+  {
+    "id": 33,
+    "word": "transaction",
+    "phonetic": "/trænˈzækʃən/",
+    "meaning": "n. 事务，交易",
+    "part_of_speech": "noun",
+    "example_sentence": "Database transactions must follow ACID properties.",
+    "difficulty_level": 2,
+    "tags": ["技术", "数据库"],
+    "related_abbreviations": ["ACID", "Saga"]
   }
 ]
