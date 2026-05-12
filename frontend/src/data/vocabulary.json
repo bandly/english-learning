@@ -128,5 +128,15 @@
     "example_sentence": "MTTF helps predict system reliability.",
     "difficulty_level": 3,
     "tags": ["技术", "运维"]
+  },
+  {
+    "id": 14,
+    "word": "CoAP",
+    "phonetic": "",
+    "meaning": "受限应用协议（Constrained Application Protocol）- 物联网轻量级通信协议",
+    "part_of_speech": "abbr",
+    "example_sentence": "CoAP is designed for IoT devices with limited resources.",
+    "difficulty_level": 3,
+    "tags": ["技术", "IoT", "协议"]
   }
 ]
