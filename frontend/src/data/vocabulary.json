@@ -349,6 +349,50 @@
     "example_sentence": "Database transactions must follow ACID properties.",
     "difficulty_level": 2,
     "tags": ["技术", "数据库"],
-    "related_abbreviations": ["ACID", "Saga"]
+    "related_abbreviations": ["ACID", "Saga", "TCC"]
+  },
+  {
+    "id": 34,
+    "word": "TCC",
+    "phonetic": "",
+    "meaning": "TCC模式（Try-Confirm-Cancel）- 分布式事务三阶段模式",
+    "part_of_speech": "abbr",
+    "example_sentence": "TCC is a popular pattern for distributed transactions.",
+    "difficulty_level": 3,
+    "tags": ["技术", "分布式", "数据库"],
+    "abbreviation_of": ["try", "confirm", "cancel"]
+  },
+  {
+    "id": 35,
+    "word": "try",
+    "phonetic": "/traɪ/",
+    "meaning": "v./n. 尝试，试行",
+    "part_of_speech": "verb/noun",
+    "example_sentence": "Please try to complete the task.",
+    "difficulty_level": 1,
+    "tags": ["基础", "缩写拆解"],
+    "related_abbreviations": ["TCC"]
+  },
+  {
+    "id": 36,
+    "word": "confirm",
+    "phonetic": "/kənˈfɜːrm/",
+    "meaning": "v. 确认，证实",
+    "part_of_speech": "verb",
+    "example_sentence": "Please confirm your booking.",
+    "difficulty_level": 2,
+    "tags": ["缩写拆解"],
+    "related_abbreviations": ["TCC"]
+  },
+  {
+    "id": 37,
+    "word": "cancel",
+    "phonetic": "/ˈkænsəl/",
+    "meaning": "v. 取消，撤销",
+    "part_of_speech": "verb",
+    "example_sentence": "I need to cancel my appointment.",
+    "difficulty_level": 2,
+    "tags": ["缩写拆解"],
+    "related_abbreviations": ["TCC"]
   }
 ]
