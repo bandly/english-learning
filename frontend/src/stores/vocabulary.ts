@@ -11,6 +11,8 @@ export interface Word {
   example_sentence?: string
   difficulty_level: number
   tags?: string[]
+  abbreviation_of?: string[]  // 缩写由哪些单词组成
+  related_abbreviations?: string[]  // 单词关联哪些缩写
 }
 
 export const useVocabularyStore = defineStore('vocabulary', () => {

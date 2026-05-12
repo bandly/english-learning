@@ -107,7 +107,8 @@
     "part_of_speech": "abbr",
     "example_sentence": "Our MTTR is under 30 minutes.",
     "difficulty_level": 3,
-    "tags": ["技术", "运维"]
+    "tags": ["技术", "运维"],
+    "abbreviation_of": ["mean", "time", "to", "repair"]
   },
   {
     "id": 12,
@@ -117,7 +118,8 @@
     "part_of_speech": "abbr",
     "example_sentence": "The MTBF of this server is 1000 hours.",
     "difficulty_level": 3,
-    "tags": ["技术", "运维"]
+    "tags": ["技术", "运维"],
+    "abbreviation_of": ["mean", "time", "between", "failure"]
   },
   {
     "id": 13,
@@ -127,7 +129,8 @@
     "part_of_speech": "abbr",
     "example_sentence": "MTTF helps predict system reliability.",
     "difficulty_level": 3,
-    "tags": ["技术", "运维"]
+    "tags": ["技术", "运维"],
+    "abbreviation_of": ["mean", "time", "to", "failure"]
   },
   {
     "id": 14,
@@ -137,6 +140,95 @@
     "part_of_speech": "abbr",
     "example_sentence": "CoAP is designed for IoT devices with limited resources.",
     "difficulty_level": 3,
-    "tags": ["技术", "IoT", "协议"]
+    "tags": ["技术", "IoT", "协议"],
+    "abbreviation_of": ["constrained", "application", "protocol"]
+  },
+  {
+    "id": 15,
+    "word": "mean",
+    "phonetic": "/miːn/",
+    "meaning": "v. 意味，意思是；adj. 平均的",
+    "part_of_speech": "verb/adj",
+    "example_sentence": "What does this word mean?",
+    "difficulty_level": 2,
+    "tags": ["基础", "缩写拆解"],
+    "related_abbreviations": ["MTTR", "MTBF", "MTTF"]
+  },
+  {
+    "id": 16,
+    "word": "time",
+    "phonetic": "/taɪm/",
+    "meaning": "n. 时间；v. 计时",
+    "part_of_speech": "noun",
+    "example_sentence": "Time is money.",
+    "difficulty_level": 1,
+    "tags": ["基础", "缩写拆解"],
+    "related_abbreviations": ["MTTR", "MTBF", "MTTF"]
+  },
+  {
+    "id": 17,
+    "word": "repair",
+    "phonetic": "/rɪˈpeər/",
+    "meaning": "v./n. 修理，修复",
+    "part_of_speech": "verb/noun",
+    "example_sentence": "The mechanic repaired my car.",
+    "difficulty_level": 2,
+    "tags": ["缩写拆解", "运维"],
+    "related_abbreviations": ["MTTR"]
+  },
+  {
+    "id": 18,
+    "word": "between",
+    "phonetic": "/bɪˈtwiːn/",
+    "meaning": "prep. 在...之间",
+    "part_of_speech": "prep",
+    "example_sentence": "The meeting is between 2pm and 4pm.",
+    "difficulty_level": 1,
+    "tags": ["基础", "缩写拆解"],
+    "related_abbreviations": ["MTBF"]
+  },
+  {
+    "id": 19,
+    "word": "failure",
+    "phonetic": "/ˈfeɪljər/",
+    "meaning": "n. 失败，故障",
+    "part_of_speech": "noun",
+    "example_sentence": "The system failure caused a outage.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "运维"],
+    "related_abbreviations": ["MTBF", "MTTF"]
+  },
+  {
+    "id": 20,
+    "word": "constrained",
+    "phonetic": "/kənˈstreɪnd/",
+    "meaning": "adj. 受限的，约束的",
+    "part_of_speech": "adj",
+    "example_sentence": "IoT devices have constrained resources.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "IoT"],
+    "related_abbreviations": ["CoAP"]
+  },
+  {
+    "id": 21,
+    "word": "application",
+    "phonetic": "/ˌæplɪˈkeɪʃən/",
+    "meaning": "n. 应用，应用程序",
+    "part_of_speech": "noun",
+    "example_sentence": "I use this application every day.",
+    "difficulty_level": 2,
+    "tags": ["基础", "缩写拆解"],
+    "related_abbreviations": ["CoAP", "API"]
+  },
+  {
+    "id": 22,
+    "word": "protocol",
+    "phonetic": "/ˈproʊtəkɒl/",
+    "meaning": "n. 协议，规程",
+    "part_of_speech": "noun",
+    "example_sentence": "HTTP is a web protocol.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "技术"],
+    "related_abbreviations": ["CoAP", "HTTP", "TCP"]
   }
 ]

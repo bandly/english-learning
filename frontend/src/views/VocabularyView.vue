@@ -26,6 +26,13 @@
             </el-select>
           </el-col>
           <el-col :span="4">
+            <el-select v-model="selectedType" placeholder="类型筛选" clearable>
+              <el-option label="缩写" value="abbreviation" />
+              <el-option label="缩写组成单词" value="component" />
+              <el-option label="普通单词" value="normal" />
+            </el-select>
+          </el-col>
+          <el-col :span="4">
             <el-select v-model="selectedDifficulty" placeholder="难度筛选" clearable>
               <el-option v-for="n in 5" :key="n" :label="难度 ${n}" :value="n" />
             </el-select>
@@ -45,7 +52,25 @@
             </template>
           </el-table-column>
           <el-table-column prop="phonetic" label="音标" width="120" />
-          <el-table-column prop="meaning" label="含义" />
+          <el-table-column prop="meaning" label="含义">
+            <template #default="{ row }">
+              <div>{{ row.meaning }}</div>
+              <!-- 显示缩写组成单词 -->
+              <div v-if="row.abbreviation_of" style="margin-top: 8px;">
+                <el-tag size="small" type="info">组成单词:</el-tag>
+                <el-tag v-for="w in row.abbreviation_of" :key="w" size="small" style="margin-left: 4px">
+                  {{ w }}
+                </el-tag>
+              </div>
+              <!-- 显示关联缩写 -->
+              <div v-if="row.related_abbreviations" style="margin-top: 8px;">
+                <el-tag size="small" type="warning">关联缩写:</el-tag>
+                <el-tag v-for="abbr in row.related_abbreviations" :key="abbr" size="small" style="margin-left: 4px">
+                  {{ abbr }}
+                </el-tag>
+              </div>
+            </template>
+          </el-table-column>
           <el-table-column prop="part_of_speech" label="词性" width="80" />
           <el-table-column prop="difficulty_level" label="难度" width="100">
             <template #default="{ row }">
@@ -86,6 +111,7 @@ const reviewStore = useReviewStore()
 const searchKeyword = ref('')
 const selectedTag = ref('')
 const selectedDifficulty = ref<number | undefined>()
+const selectedType = ref('')
 const currentPage = ref(1)
 const pageSize = 20
 
@@ -103,6 +129,15 @@ const filteredWords = computed(() => {
 
   if (selectedDifficulty.value) {
     words = words.filter(w => w.difficulty_level === selectedDifficulty.value)
+  }
+
+  // 类型筛选
+  if (selectedType.value === 'abbreviation') {
+    words = words.filter(w => w.abbreviation_of)
+  } else if (selectedType.value === 'component') {
+    words = words.filter(w => w.related_abbreviations)
+  } else if (selectedType.value === 'normal') {
+    words = words.filter(w => !w.abbreviation_of && !w.related_abbreviations)
   }
 
   return words
