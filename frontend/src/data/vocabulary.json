@@ -394,5 +394,49 @@
     "difficulty_level": 2,
     "tags": ["缩写拆解"],
     "related_abbreviations": ["TCC"]
+  },
+  {
+    "id": 38,
+    "word": "SLB",
+    "phonetic": "",
+    "meaning": "服务器负载均衡（Server Load Balancer）",
+    "part_of_speech": "abbr",
+    "example_sentence": "SLB distributes traffic across multiple servers.",
+    "difficulty_level": 3,
+    "tags": ["技术", "运维", "网络"],
+    "abbreviation_of": ["server", "load", "balancer"]
+  },
+  {
+    "id": 39,
+    "word": "server",
+    "phonetic": "/ˈsɜːrvər/",
+    "meaning": "n. 服务器",
+    "part_of_speech": "noun",
+    "example_sentence": "The server is running Linux.",
+    "difficulty_level": 2,
+    "tags": ["缩写拆解", "技术"],
+    "related_abbreviations": ["SLB"]
+  },
+  {
+    "id": 40,
+    "word": "load",
+    "phonetic": "/loʊd/",
+    "meaning": "n. 负载，负载量；v. 加载",
+    "part_of_speech": "noun/verb",
+    "example_sentence": "The server has a high load.",
+    "difficulty_level": 2,
+    "tags": ["缩写拆解", "运维"],
+    "related_abbreviations": ["SLB"]
+  },
+  {
+    "id": 41,
+    "word": "balancer",
+    "phonetic": "/ˈbælənsər/",
+    "meaning": "n. 均衡器，平衡器",
+    "part_of_speech": "noun",
+    "example_sentence": "A load balancer distributes network traffic.",
+    "difficulty_level": 3,
+    "tags": ["缩写拆解", "网络"],
+    "related_abbreviations": ["SLB"]
   }
 ]
